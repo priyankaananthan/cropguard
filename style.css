@@ -1,0 +1,90 @@
+:root {
+  --cg-green: #1b5e20;
+  --cg-green-light: #43a047;
+  --cg-accent: #ffb300;
+  --cg-bg: #f4f8f4;
+}
+
+body {
+  background: var(--cg-bg);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: #1f2a1f;
+}
+
+.navbar {
+  background: linear-gradient(90deg, var(--cg-green) 0%, var(--cg-green-light) 100%);
+}
+
+.hero {
+  background: linear-gradient(135deg, rgba(27,94,32,0.92), rgba(67,160,71,0.85)),
+              url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1600') center/cover;
+  color: #fff;
+  padding: 90px 0 70px;
+}
+
+.hero h1 { font-weight: 800; letter-spacing: -0.5px; }
+
+.card-feature {
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease;
+  height: 100%;
+}
+.card-feature:hover { transform: translateY(-4px); }
+
+.crop-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #e8f5e9;
+  color: var(--cg-green);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 4px;
+}
+
+.btn-cg {
+  background: var(--cg-green);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 26px;
+  font-weight: 600;
+  border: none;
+}
+.btn-cg:hover { background: var(--cg-green-light); color: #fff; }
+
+.upload-zone {
+  border: 2px dashed var(--cg-green-light);
+  border-radius: 14px;
+  padding: 50px 20px;
+  text-align: center;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.upload-zone:hover, .upload-zone.dragover { background: #e8f5e9; }
+
+.severity-mild { color: #2e7d32; font-weight: 700; }
+.severity-moderate { color: #ef6c00; font-weight: 700; }
+.severity-severe { color: #c62828; font-weight: 700; }
+.severity-none { color: #1565c0; font-weight: 700; }
+
+.result-card {
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+}
+
+.stat-card {
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  text-align: center;
+  padding: 22px 10px;
+}
+.stat-card .num { font-size: 2rem; font-weight: 800; color: var(--cg-green); }
+
+table.table thead { background: var(--cg-green); color: #fff; }
