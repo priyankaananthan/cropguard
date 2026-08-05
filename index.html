@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}CropGuard AI — Smart Agriculture Diagnostics{% endblock %}
+{% block content %}
+<div class="hero text-center">
+  <div class="container">
+    <h1 class="display-4">Diagnose Crop Nutrient Deficiencies Instantly</h1>
+    <p class="lead mb-4">Upload a leaf photo. Get AI + OpenCV spectral analysis, severity grading, and a crop-specific fertilizer plan — in seconds.</p>
+    <a href="{{ url_for('detect') }}" class="btn btn-warning btn-lg fw-bold px-4"><i class="fa-solid fa-camera"></i> Scan a Leaf Now</a>
+  </div>
+</div>
+
+<div class="container my-5">
+  <h4 class="text-center mb-4">Supported Crops</h4>
+  <div class="text-center">
+    {% for c in crops %}
+      <span class="crop-chip"><i class="fa-solid fa-seedling"></i> {{ c }}</span>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card card-feature p-4">
+        <i class="fa-solid fa-magnifying-glass-chart fa-2x text-success mb-3"></i>
+        <h5>Spectral HSV Analysis</h5>
+        <p class="text-muted mb-0">OpenCV measures chlorophyll, chlorosis, necrosis and anthocyanin signals directly from the image, calibrated per crop.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card card-feature p-4">
+        <i class="fa-solid fa-flask fa-2x text-success mb-3"></i>
+        <h5>Crop-Specific Treatment</h5>
+        <p class="text-muted mb-0">Fertilizer type, dosage, and method are matched to your exact crop — not a generic one-size-fits-all answer.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card card-feature p-4">
+        <i class="fa-solid fa-file-pdf fa-2x text-success mb-3"></i>
+        <h5>Downloadable Report</h5>
+        <p class="text-muted mb-0">Every scan generates a stamped PDF diagnostic certificate with a unique Report ID.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="card card-feature p-4">
+    <h5><i class="fa-solid fa-envelope text-success"></i> Contact / Feedback</h5>
+    <form class="row g-3 mt-1">
+      <div class="col-md-6"><input type="text" class="form-control" placeholder="Your Name"></div>
+      <div class="col-md-6"><input type="email" class="form-control" placeholder="Your Email"></div>
+      <div class="col-12"><textarea class="form-control" rows="3" placeholder="Message"></textarea></div>
+      <div class="col-12"><button type="button" class="btn btn-cg">Send Message</button></div>
+    </form>
+  </div>
+</div>
+{% endblock %}
