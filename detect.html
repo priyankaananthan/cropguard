@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Scan Leaf — CropGuard AI{% endblock %}
+{% block content %}
+<div class="container my-5" style="max-width: 640px;">
+  <h3 class="mb-4 text-center"><i class="fa-solid fa-camera-retro"></i> Leaf Diagnostic Scanner</h3>
+  <div class="card result-card p-4">
+    <form action="{{ url_for('detect') }}" method="POST" enctype="multipart/form-data" id="scanForm">
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Select Crop</label>
+        <select class="form-select" name="crop_type" required>
+          <option value="" disabled selected>Choose crop species...</option>
+          {% for c in crops %}
+            <option value="{{ c.lower() }}">{{ c }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <label class="form-label fw-semibold">Leaf Image</label>
+      <div class="upload-zone" id="dropZone">
+        <i class="fa-solid fa-cloud-arrow-up fa-2x text-success mb-2"></i>
+        <p class="mb-1">Drag & drop a leaf image here, or click to browse</p>
+        <small class="text-muted">PNG, JPG, JPEG, WEBP — max 10MB</small>
+        <input type="file" name="leaf_image" id="fileInput" accept="image/*" class="d-none" required>
+      </div>
+      <div id="previewWrap" class="text-center mt-3 d-none">
+        <img id="previewImg" class="img-fluid rounded" style="max-height:220px;">
+      </div>
+
+      <button type="submit" class="btn btn-cg w-100 mt-4">
+        <i class="fa-solid fa-magnifying-glass"></i> Analyze Leaf
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+const previewWrap = document.getElementById('previewWrap');
+const previewImg = document.getElementById('previewImg');
+
+dropZone.addEventListener('click', () => fileInput.click());
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('dragover');
+  if (e.dataTransfer.files.length) {
+    fileInput.files = e.dataTransfer.files;
+    showPreview(fileInput.files[0]);
+  }
+});
+fileInput.addEventListener('change', () => {
+  if (fileInput.files.length) showPreview(fileInput.files[0]);
+});
+function showPreview(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    previewImg.src = e.target.result;
+    previewWrap.classList.remove('d-none');
+  };
+  reader.readAsDataURL(file);
+}
+</script>
+{% endblock %}
