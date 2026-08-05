@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — CropGuard AI{% endblock %}
+{% block content %}
+<div class="container my-5">
+  <h3 class="mb-4"><i class="fa-solid fa-gauge text-success"></i> Activity Dashboard</h3>
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="stat-card"><div class="num">{{ total }}</div><div class="text-muted">Total Scans</div></div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card"><div class="num">{{ healthy }}</div><div class="text-muted">Healthy</div></div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card"><div class="num">{{ deficient }}</div><div class="text-muted">Deficient</div></div>
+    </div>
+  </div>
+  <a href="{{ url_for('reports') }}" class="btn btn-cg">View All Reports</a>
+</div>
+{% endblock %}
